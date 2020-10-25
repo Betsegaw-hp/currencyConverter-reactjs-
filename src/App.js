@@ -1,37 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
-const BASE_URL  = 'https://api.exchangeratesapi.io/latest';
-
-function CurrrencyChanger(props) {
-  const {
-    currencyOption,
-    selectedOption,
-    onChangeCurrency,
-    handleAmountChange,
-    amount
-  } = props;
-  
-  return(
-    <>
-    <input className="input" 
-           type="number"
-           placeholder="currency" 
-            value={amount}
-            onChange={handleAmountChange}/>
-     <select className="selection" 
-             value={selectedOption}
-              onChange={onChangeCurrency}
-            >
-       { currencyOption && currencyOption.map((option)=> (
-          <option key={option} value=
-          {option}>{option}</option>
-       ))}
-        
-       </select>       
-            </>
-  );
-}
+import CurrencyConverter from './currencyConverter';
+import CurrencyHistory from './CurrencyHistory';
 
 
 function App() {
@@ -41,6 +11,19 @@ function App() {
   const [exchangeRate, setExchangeRate] = useState();
   const [amount , setAmount] = useState(1);
   const [isFromCurrency, setIsFromCurrency] = useState(true);
+  const [pickDate , setPickDate] = useState('latest');
+
+  // if you pick future time it will be latest
+  if(pickDate !== 'latest') {
+    const current = new Date().getFullYear(); 
+    
+  if(pickDate.slice(0,4) >= `${current}`) {
+     setPickDate('latest');
+    }
+  }
+  
+  const BASE_URL  = `https://api.exchangeratesapi.io/${pickDate}`;
+
 
   //fetch intialy and set key of currencies
   useEffect(() => {
@@ -51,7 +34,7 @@ function App() {
       setCurrencyFrom(res.data.base)
       setCurrencyTo(firstCurrency)
     }).catch(err=> console.log(err))
-  },[])
+  },[BASE_URL])
 
   //fetch when currency options change and set exchangeRate
   useEffect(()=> {
@@ -61,7 +44,7 @@ function App() {
       )
       .catch(err => console.log(err))
     }
-  }, [currencyFrom, currencyTo])
+  }, [currencyFrom, currencyTo,BASE_URL])
 
   let toAmount, fromAmount ;
   if(isFromCurrency) {
@@ -84,21 +67,28 @@ function App() {
   }
   return (
     <div className="container">
-    <h1>Currency Changer</h1>
+      <div className="converter coloumn">
+    <h3>Currency Changer</h3>
     
-    <CurrrencyChanger currencyOption={currencyOption}
+    <CurrencyConverter currencyOption={currencyOption}
     selectedOption={currencyFrom}
     onChangeCurrency={e => setCurrencyFrom(e.target.value)}
     handleAmountChange={handleFromAmountChange}
     amount={fromAmount}
     />
-    <div>=</div>
-    <CurrrencyChanger currencyOption= {currencyOption}
+    <div className="equals">=</div>
+    <CurrencyConverter currencyOption= {currencyOption}
     selectedOption={currencyTo}
     onChangeCurrency={e => setCurrencyTo(e.target.value)}
     handleAmountChange={handleToAmountChange}
     amount={toAmount}
     />
+  </div>
+  <div className="history coloumn">
+ <CurrencyHistory 
+      handleDateChange={e => setPickDate(e.target.value)}
+      pickDate={pickDate}/>
+      </div>
     </div>
   );
 }
