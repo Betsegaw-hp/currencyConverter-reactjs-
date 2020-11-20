@@ -5,7 +5,9 @@
 }
 body {
   min-height: 100vh;
-  background: rgba(197, 214, 214, 0.624);
+  background: linear-gradient(10deg , rgba(143, 213, 146, 0.425) 80% ,  rgba(71, 21, 21, 0.548)) 20%,
+  linear-gradient(15deg , rgba(255, 0, 0, 0.679) 80% , rgba(0, 0, 255, 0.651) 20%),
+  linear-gradient(-335deg , rgba(255, 251, 0, 0.343) 80% , rgba(0, 204, 255, 0.651) 20%);
 }
 .container {
   display: flex; 
@@ -16,6 +18,13 @@ body {
 .converter {
   margin:5rem 0;
   text-align: center;
+  padding: 3rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.398);
+  transition: all 0.5s ease;
+}
+.converter:hover,
+ .history:hover {
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.398);
 }
 .equals {
   font-size: 3rem;
@@ -23,6 +32,9 @@ body {
 }
 .history {
   text-align: center;
+  padding: 3rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.398);
+  transition: all 0.5s ease;
 }
 .container h3 {
   margin:2rem 0;
