@@ -10,7 +10,7 @@ function CurrencyHistory(props) {
   const today = `${current.getFullYear()}-${current.getMonth() +1}-${current.getDate()}`;
   return(
     <>
-    <h3>Want to Know about past Currency Histories</h3>
+    <h3>Want to Know about past Currency Histories?</h3>
     <p>Pick your Date. By default it will be latest </p>
     <input type="date" 
            min="1999-01-04"

@@ -5,26 +5,31 @@
 }
 body {
   min-height: 100vh;
-  background: linear-gradient(10deg , rgba(143, 213, 146, 0.425) 80% ,  rgba(71, 21, 21, 0.548)) 20%,
-  linear-gradient(15deg , rgba(255, 0, 0, 0.679) 80% , rgba(0, 0, 255, 0.651) 20%),
-  linear-gradient(-335deg , rgba(255, 251, 0, 0.343) 80% , rgba(0, 204, 255, 0.651) 20%);
+  background: linear-gradient(10deg , rgba(0, 0, 0, 0.843) 80% ,  rgba(0, 0, 0, 0.336)) 20%,
+  linear-gradient(15deg , rgba(71, 71, 71, 0.363) 80% , rgba(96, 90, 90, 0.261) 20%),
+  linear-gradient(25deg , rgba(15, 15, 15, 0.151) 80% , rgba(47, 44, 44, 0.459) 20%),
+  linear-gradient(230deg ,  rgba(105, 101, 101, 0.22) 80% , rgba(230, 230, 237, 0.274) 20%),
+  linear-gradient(210deg ,  rgba(162, 167, 206, 0.932) 80% , rgba(198, 197, 205, 0.377) 20%)
+  ;
 }
 .container {
   display: flex; 
   justify-content: space-around;
   place-items: center;
   padding: 4rem 1rem;
+  color: rgba(255, 255, 255, 0.651);
 }
 .converter {
   margin:5rem 0;
   text-align: center;
   padding: 3rem;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.398);
+  box-shadow: 0 5px 10px rgba(81, 77, 77, 0.706);
   transition: all 0.5s ease;
 }
 .converter:hover,
  .history:hover {
-  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.398);
+  box-shadow: 0 -5px 50px rgba(81, 77, 77, 0.706);
+  border-radius: 2rem;
 }
 .equals {
   font-size: 3rem;
@@ -33,7 +38,7 @@ body {
 .history {
   text-align: center;
   padding: 3rem;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.398);
+  box-shadow: 0 5px 10px rgba(81, 77, 77, 0.706);
   transition: all 0.5s ease;
 }
 .container h3 {
@@ -42,6 +47,7 @@ body {
 .input {
   padding: .5rem;
   border-radius: .3rem;
+  
 }
 .selection {
  padding:.5rem;
