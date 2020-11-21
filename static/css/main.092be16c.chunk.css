@@ -1,2 +1,0 @@
-*,:after,:before{margin:0;box-sizing:border-box}body{min-height:100vh;background:rgba(197,214,214,.624)}.container{display:flex;justify-content:space-around;place-items:center;padding:4rem 1rem}.converter{margin:5rem 0;text-align:center}.equals{font-size:3rem;font-weight:800}.history{text-align:center}.container h3{margin:2rem 0}.input{border-radius:.3rem}.input,.selection{padding:.5rem}@media screen and (max-width:800px){.container{display:flex;flex-direction:column}}
-/*# sourceMappingURL=main.092be16c.chunk.css.map */
