@@ -34,8 +34,8 @@ function App() {
        apikey: 'nO4BhDUfDqlrXNkDms6RaOs69O9Lizeq'
     })
     .then(res => {
-      const firstCurrency = Object.keys(res.data.symbols)[0];
-      setCurrencyOption([res.data.base, ...Object.keys(res.data.symbols)]);
+      const firstCurrency = Object.keys(res.data.rates)[0];
+      setCurrencyOption([res.data.base, ...Object.keys(res.data.rates)]);
       setCurrencyFrom(res.data.base)
       setCurrencyTo(firstCurrency)
     }).catch(err=> console.log(err))
