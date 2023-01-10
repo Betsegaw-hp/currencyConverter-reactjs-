@@ -11,26 +11,31 @@ function App() {
   const [exchangeRate, setExchangeRate] = useState();
   const [amount , setAmount] = useState(1);
   const [isFromCurrency, setIsFromCurrency] = useState(true);
-  const [pickDate , setPickDate] = useState('latest');
+  const [pickDate , setPickDate] = useState('live');
 
   // if you pick future time it will be latest
-  if(pickDate !== 'latest') {
+  if(pickDate !== 'live') {
     const current = new Date().getFullYear(); 
     
   if(pickDate.slice(0,4) >= `${current}`) {
-     setPickDate('latest');
+     setPickDate('live');
     }
   }
   
-  const BASE_URL  = `https://api.exchangeratesapi.io/${pickDate}`;
+  const BASE_URL  = `https://api.apilayer.com/currency_data/${pickDate}`;
 
 
   //fetch intialy and set key of currencies
   useEffect(() => {
-    axios(BASE_URL)
+    axios({
+       method: 'get', 
+       url: BASE_URL,
+       responseType: 'json',
+       apikey: 'nO4BhDUfDqlrXNkDms6RaOs69O9Lizeq'
+    })
     .then(res => {
-      const firstCurrency = Object.keys(res.data.rates)[0];
-      setCurrencyOption([res.data.base, ...Object.keys(res.data.rates)]);
+      const firstCurrency = Object.keys(res.data.symbols)[0];
+      setCurrencyOption([res.data.base, ...Object.keys(res.data.symbols)]);
       setCurrencyFrom(res.data.base)
       setCurrencyTo(firstCurrency)
     }).catch(err=> console.log(err))
