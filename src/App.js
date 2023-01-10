@@ -33,9 +33,10 @@ function App() {
        method: 'get', 
        url: BASE_URL,
        responseType: 'json',
-       auth: {
-        apikey: apiKey,
-       }
+       headers: { 
+        'X-Requested-With' : 'XMLHttpRequest',
+        'apikey' : apiKey,
+      },
     })
     .then(res => {
       const firstCurrency = Object.keys(res.data.rates)[0];
