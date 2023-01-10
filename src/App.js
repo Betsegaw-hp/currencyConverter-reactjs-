@@ -23,6 +23,8 @@ function App() {
   }
   
   const BASE_URL  = `https://api.apilayer.com/currency_data/${pickDate}`;
+  // Fix - make it env var
+  const apiKey = 'nO4BhDUfDqlrXNkDms6RaOs69O9Lizeq';
 
 
   //fetch intialy and set key of currencies
@@ -31,7 +33,9 @@ function App() {
        method: 'get', 
        url: BASE_URL,
        responseType: 'json',
-       apikey: 'nO4BhDUfDqlrXNkDms6RaOs69O9Lizeq'
+       auth: {
+        apikey: apiKey,
+       }
     })
     .then(res => {
       const firstCurrency = Object.keys(res.data.rates)[0];
